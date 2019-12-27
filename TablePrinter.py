@@ -3,28 +3,22 @@ tableData = [['apples', 'oranges', 'cherries', 'banana'],
              ['dogs', 'cats', 'moose', 'goose']]
 
 
-def max(table):
-    max = 0
-    for i in table:
-        if len(i) > max:
-            max = len(i)
-    return max
-
-
 def printTable(table):
-    tableSizes = []
-    for i in range(len(table) - 1):  # Creates a second table, tableSizes, out of the lengths of each element in the table
-        for j in range(len(table[i]) - 1):
-            tableSizes[i][j] = len(str(table[i][j]))
+    #  Iterate through every value in table, finding the max length of a column
+    for i in range(len(table)):
+        max = 0
+        for j in table[i]:
+            if len(j) > max:
+                max = len(j)
 
-    for i in range(len(tableSizes)):
-        maxLen = max(tableSizes[i])
-        for j in range(len(tableSizes[i])):
-            table[i][j].rjust(maxLen)
+        #  Apply the max length of a column through rjust() to each value in the column
+        for j in range(len(table[i])):
+            table[i][j] = table[i][j].rjust(max + 1)
 
-    for i in table:
-        for j in i:
-            print(j + ' ', end='')
+    #  Print out the table, [0,0] [1,0] [2,0] enter (iterate through row first, then column)
+    for i in range(len(table[0])):
+        for j in range(len(table)):
+            print(table[j][i], end='')
         print('')
 
 
